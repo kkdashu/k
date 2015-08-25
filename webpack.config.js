@@ -1,7 +1,8 @@
+var webpack = require('webpack');
+
 module.exports = {
-  entry: :{
-   index: './app/index.js',
-   list: './app/list.js'
+  entry: {
+    index: './index.js'
   },
   output:{
     path: './build',
@@ -14,8 +15,5 @@ module.exports = {
       { test: /\.em$/, loader: 'emblem-loader'},
       { test: /\.coffee$/, loader: 'coffee-loader'}
     ]
-  },
-  resolve: {
-    extensions: ['.em']
   }
 };

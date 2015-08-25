@@ -1,0 +1,25 @@
+{
+  "name": "webpack-demo",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kkdashu/webpack-demo",
+  "authors": [
+    "kkdashu <wmeng17@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "moduleType": [
+    "node",
+    "globals"
+  ],
+  "devDependencies": {
+    "handlebars": "~3.0.3",
+    "jquery": "~2.1.4"
+  }
+}
