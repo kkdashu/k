@@ -1,0 +1,15 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "webpack demo",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kkdashu",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.16.0",
+    "style-loader": "^0.12.3"
+  }
+}
