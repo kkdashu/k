@@ -1,7 +1,10 @@
 module.exports = {
-  entry: "./entry.js",
+  entry: :{
+   index: './app/index.js',
+   list: './app/list.js'
+  },
   output:{
-    path: __dirname,
+    path: './build',
     filename: "[name].js"
   },
   module: {
