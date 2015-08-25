@@ -9,7 +9,13 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style!css'}
+      { test: /\.css$/, loader: 'style!css'},
+      { test: /\.hbs$/, loader: 'handlebars-loader'},
+      { test: /\.em$/, loader: 'emblem-loader'},
+      { test: /\.coffee$/, loader: 'coffee-loader'}
     ]
+  },
+  resolve: {
+    extensions: ['.em']
   }
 };
