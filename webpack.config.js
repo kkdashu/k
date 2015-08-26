@@ -15,5 +15,8 @@ module.exports = {
       { test: /\.em$/, loader: 'emblem-loader'},
       { test: /\.coffee$/, loader: 'coffee-loader'}
     ]
+  },
+  externals: {
+    'jquery': 'jQuery'
   }
 };
