@@ -1,4 +1,5 @@
-require('./header.css')
+require('../../../../bower_components/jquery/dist/jquery.js');
+require('./header.css');
 var template = require('./header.hbs');
 
 var html = template();
