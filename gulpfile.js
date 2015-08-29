@@ -4,6 +4,7 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     gutil = require('gulp-util'),
+    connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
     webpack = require('webpack');
 
@@ -22,6 +23,16 @@ gulp.task('webpack', function(callback){
 	});
 });
 
+gulp.task('connect', function() {
+  connect.server({
+    root: './',
+    port: 9100,
+    livereload: true
+  });
+});
+
 gulp.task('watch', function() {
   gulp.watch('./app/**/*.*', ['webpack']);
 });
+
+gulp.task('default', ['connect', 'watch']);
