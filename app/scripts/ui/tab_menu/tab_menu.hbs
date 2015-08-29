@@ -1,0 +1,18 @@
+  <div>
+    <ul class="tab_menu_tab">
+      {{#each model}}
+        <li>{{name}}</li>
+      {{/each}}
+    </ul>
+    <div class="tab_menu_content">
+      {{#each model}}
+        <ul>
+          {{#each values}}
+            <li>
+              <a title="{{name}}" data-code="{{code}}">{{name}}</a>
+            </li>
+          {{/each}}
+        </ul>
+      {{/each}}
+    </div>
+  </div>
