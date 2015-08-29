@@ -1,7 +1,7 @@
 require('./tab_menu.css');
 var template = require("./tab_menu.hbs");
 
-function TabMenu(trigger, data) {
+function TabMenu(data) {
   this.data = data;
   this.$el = $("<div class='tab_menu'></div>");
   this.tmp = template;
