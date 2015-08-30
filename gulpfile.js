@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    mocha = require('gulp-mocha');
 
 var webpackConfig = require('./webpack.config.js');
 
@@ -35,4 +36,19 @@ gulp.task('watch', function() {
   gulp.watch('./app/**/*.*', ['webpack']);
 });
 
+gulp.task('watch_test', function() {
+  gulp.watch(['./app/scripts/lib/*.js', './test/*.js'], ['mocha_test']);
+});
+
+gulp.task('mocha_test', function() {
+  try{
+    gulp.src('./test/*.js')
+      .pipe(mocha());
+  } catch(err) {
+    gutil.log('[test]', err);
+  }
+});
+
 gulp.task('default', ['connect', 'watch']);
+
+gulp.task('test', ['watch_test']);

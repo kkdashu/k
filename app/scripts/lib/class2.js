@@ -1,0 +1,61 @@
+/**
+ * 模拟javascript的oo实现
+ * var Person = Class.extend({
+ *   say: function() {
+ *    console.log('My name is ' + this.name);
+ *   }
+ * });
+ *
+ * var kkdashu = new Person('kkdashu');
+ *
+ *
+ **/
+
+var _ = require('./underscore.js');
+
+function Class(){
+
+}
+
+Class.extend = function() {
+  var Constructor = this;
+
+  //返回的构造函数
+  function SubClass() {
+    if(this.constructor === SubClass && this.initialize){
+      this.initialize.apply(this);
+    }
+    var properties = _.toArray(arguments);
+    while(property = properties.shift()) {
+      _.extend(this, property);
+    }
+  }
+  //继承当前类
+  SubClass.prototype = new this();
+
+  //把所有传过来的属性与方法赋值给原型
+  var properties = _.toArray(arguments);
+  while(property = properties.shift()) {
+    _.extend(SubClass.prototype, property);
+  }
+  //修正constructor属性
+  SubClass.prototype.constructor = SubClass;
+  SubClass.extend = Class.extend;
+  SubClass.create = Class.create;
+  return SubClass;
+}
+
+Class.create = function() {
+  var arg = {}, par, p;
+  for(var i = 0, length = arguments.length;i < length; i++) {
+    par = arguments[i];
+    for(p in par) {
+      if(par.hasOwnProperty(p)) {
+        arg[p] = par[p]
+      }
+    }
+  }
+  return new this(arg);
+}
+
+module.exports = Class;
