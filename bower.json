@@ -1,7 +1,7 @@
 {
   "name": "kyo",
   "main": "index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/kkdashu/kyo",
   "authors": [
     "kkdashu <wmeng17@gmail.com>"
@@ -15,6 +15,7 @@
     "tests"
   ],
   "moduleType": [
+    "amd",
     "node",
     "globals"
   ],
