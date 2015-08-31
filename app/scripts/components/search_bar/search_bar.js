@@ -12,14 +12,9 @@ $(".search-bar-wrap").html(html);
 
 new DateTimeAutoParse("search_bar").autoParse();
 
-cityTabMenu.setTarget('city');
+cityTabMenu('city');
 
 $element.on('click', '.search', function() {
   var pars = { name: $element.find('.name').val() };
   content.filter(pars);
-});
-
-$element.on('click', '.city', function(e) {
-  cityTabMenu.render();
-  e.stopPropagation();
 });
