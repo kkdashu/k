@@ -1,2 +1,2 @@
-# webpack-demo
-使用webpack测试前端组件化开发
+# K.js
+简单定义前端组件
