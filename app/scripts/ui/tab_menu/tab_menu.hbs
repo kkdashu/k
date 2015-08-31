@@ -1,18 +1,16 @@
-  <div>
-    <ul class="tab_menu_tab">
-      {{#each model}}
-        <li>{{name}}</li>
-      {{/each}}
-    </ul>
-    <div class="tab_menu_content">
-      {{#each model}}
-        <ul>
-          {{#each values}}
-            <li>
-              <a title="{{name}}" data-code="{{code}}">{{name}}</a>
-            </li>
-          {{/each}}
-        </ul>
-      {{/each}}
-    </div>
+  <ul class="tab_menu_head clearfix">
+    {{#each model}}
+      <li class="tab_menu_head_item" data-index="{{@index}}">{{name}}</li>
+    {{/each}}
+  </ul>
+  <div class="tab_menu_content">
+    {{#each model}}
+      <ul class="tab_menu_content_item clearfix" data-index="{{@index}}">
+        {{#each values}}
+          <li>
+            <a title="{{name}}" data-code="{{code}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/each}}
   </div>

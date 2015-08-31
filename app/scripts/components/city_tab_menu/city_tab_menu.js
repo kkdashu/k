@@ -26,6 +26,15 @@ var data = [
 
 ]
 
-var tabMenu = new TabMenu(data);
+var tabMenu = TabMenu.create({
+  model: data,
+  position: {x: '13px', y: '25px'}
+});
+
+$('body').on('click', function(e) {
+  if(e.target != tabMenu.target) {
+    tabMenu.hide();
+  }
+});
 
 module.exports = tabMenu;

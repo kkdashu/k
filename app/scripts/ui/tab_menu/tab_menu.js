@@ -1,22 +1,22 @@
 require('./tab_menu.css');
+var _ = require('../../lib/underscore.js');
 var template = require('./tab_menu.hbs');
-var Base = require('../../lib/base.js');
+var Component = require('../../lib/component.js');
 
-var TabMenu = Base.extend({
+var TabMenu = Component.extend({
   $el: $("<div class='tab_menu'></div>"),
   tmp: template,
-  render: function(parentEl) {
-    parentEl = parentEl || $('body');
-    var html = this.tmp({model: this.model});
-    this.$el.html(html);
-    parentEl.append(this.$el);
+  events: {
+    'click .tab_menu_head_item': 'switchTab'
   },
-  hide: function() {
-    this.$el.hide();
-  },
-  show: function() {
-    this.$el.show();
+  switchTab: function(e) {
+    var $target = $(e.target);
+    this.$el.find('.tab_menu_head_item').removeClass('active');
+    $target.addClass('active');
+    var index = $target.data('index');
+    this.$el.find('.tab_menu_content_item').hide();
+    this.$el.find('.tab_menu_content').find('[data-index='+index+']').show()
   }
-})
+});
 
 module.exports = TabMenu;

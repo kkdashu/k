@@ -1,12 +1,27 @@
 .tab_menu {
   position: absolute;
-}
-
-.tab_menu_tab li {
-  float: left;
+  min-height: 200px;
+  min-width: 200px;
+  background-color: #fff;
+  z-index: 9;
   border: 1px solid #ccc;
+  padding: 10px;
 }
+.tab_menu_head {
 
+}
+.tab_menu_head_item {
+  float: left;
+  padding:5px 5px 5px 5px;
+  border: 1px solid #ccc;
+  border-right: none;
+}
+.tab_menu_head_item:last-child {
+  border-right: 1px solid #ccc;
+}
+.tab_menu_head_item.active {
+  color: red;
+}
 .tab_menu .tab_menu_content {
   border: 1px solid #ccc;
   padding: 10px;
@@ -14,4 +29,7 @@
 
 .tab_menu .tab_menu_content li {
   float: left;
+}
+.tab_menu_content_item {
+  display: none;
 }
