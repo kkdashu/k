@@ -3,7 +3,7 @@ var autoComplete = {
     $(opt.target).autocomplete({
       html: true,
       autoFocus: true,
-      delay: opt.delay || 0,
+      delay: opt.delay || 200,
       source: opt.source || function(request, response) {
         var inputData = request.term;
         var matcher = new RegExp($.ui.autocomplete.escapeRegex(inputData), "i");
@@ -17,6 +17,9 @@ var autoComplete = {
                 label: filterData[i].name,
                 value: filterData[i].name
             });
+        }
+        if(responseData.length == 0) {
+          responseData = ['无数据，请更换关键字搜索！'];
         }
         response(responseData);
       },
