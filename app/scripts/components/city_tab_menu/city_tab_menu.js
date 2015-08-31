@@ -1,4 +1,5 @@
 var TabMenu = require('../../ui/tab_menu/tab_menu.js');
+var AutoComplete = require('../../ui/auto_complete/auto_complete.js');
 var autoCompleteData = [
   {  name: '成都市', code: 'cd' },
   {  name: '达州市', code: 'dz' },
@@ -40,22 +41,35 @@ var data = [
 
 ]
 
-var tabMenu = TabMenu.create({
-  model: data,
-  position: {x: '13px', y: '25px'}
-});
 
-$('body').on('click', function(e) {
-  if(e.target != tabMenu.target) {
-    tabMenu.hide();
-  }
-});
 
 function cityTabView(target) {
   if(typeof target == 'string') {
     target = document.getElementById(target);
   }
-  tabMenu.setTarget(target);
+  //tab
+  var tabMenu = TabMenu.create({
+    model: data,
+    position: {x: '13px', y: '25px'},
+    target: target
+  });
+
+  //autoComplete
+  var autoComplete = AutoComplete.create({
+    target: target,
+    model: autoCompleteData,
+    select: function() {
+      //alert('select');
+    },
+    open: function() {
+      tabMenu.hide();
+    }
+  });
+  $('body').on('click', function(e) {
+    if(e.target != tabMenu.target) {
+      tabMenu.hide();
+    }
+  });
   $(target).on('click', function(e) {
     tabMenu.render();
     e.stopPropagation();

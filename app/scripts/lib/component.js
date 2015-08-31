@@ -10,12 +10,6 @@ var Component = Base.extend({
     this.cid = _.uniqueId('component');
     this.delegateEvents();
   },
-  setTarget: function(target) {
-    if(typeof target === 'string') {
-      target = document.getElementById(target);
-    }
-    this.target = target;
-  },
   render: function(parentEl) {
     if(!parentEl) {
       if(this.target) {

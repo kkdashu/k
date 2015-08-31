@@ -1,5 +1,5 @@
 require('./search_bar.css');
-var DateTimeAutoParse = require('../../auto_parse/date_time.js');
+var AutoParse = require('../../auto_parse/auto_parse.js');
 var content = require('../content/content.js');
 var template = require('./search_bar.hbs');
 var cityTabMenu = require('../city_tab_menu/city_tab_menu.js');
@@ -10,7 +10,7 @@ var $element = $(".search-bar-wrap");
 
 $(".search-bar-wrap").html(html);
 
-new DateTimeAutoParse("search_bar").autoParse();
+new AutoParse("search_bar").autoParse();
 
 cityTabMenu('city');
 
