@@ -10,7 +10,7 @@ var TabMenu = Component.extend({
     'click .tab_menu_head_item': 'switchTab'
   },
   switchTab: function(e) {
-    var $target = $(e.target);
+    var $target = $(e.currentTarget);
     this.$el.find('.tab_menu_head_item').removeClass('active');
     $target.addClass('active');
     var index = $target.data('index');

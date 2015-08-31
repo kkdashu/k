@@ -1,35 +1,57 @@
 .tab_menu {
   position: absolute;
   min-height: 200px;
-  min-width: 200px;
+  min-width: 300px;
   background-color: #fff;
   z-index: 9;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 4px;
+  overflow: hidden;
 }
 .tab_menu_head {
-
+  border-bottom: 1px solid #c7cdde;
 }
 .tab_menu_head_item {
   float: left;
-  padding:5px 5px 5px 5px;
-  border: 1px solid #ccc;
-  border-right: none;
 }
-.tab_menu_head_item:last-child {
-  border-right: 1px solid #ccc;
+.tab_menu_head_item a {
+  padding: 10px;
+	cursor: pointer;
+	color:#08c;
+	margin-right: 5px;
+	border: 1px solid #fff;
+	display: inline-block;
+	background-color: #fff;
 }
-.tab_menu_head_item.active {
-  color: red;
+.tab_menu_head_item.active a {
+  height: 43px;
+	margin-bottom: -1px;
+	_position: relative;
+	color: #666;
+	border-color: #fff;
+	border-radius: 4px 4px 0 0;
+	border: 1px solid #ccc;
+	border-bottom-color: #fff;
 }
 .tab_menu .tab_menu_content {
-  border: 1px solid #ccc;
-  padding: 10px;
+  padding: 20px 10px 10px 10px;
+	float: left;
 }
-
-.tab_menu .tab_menu_content li {
+.tab_menu_content ul {
+  display: none;
   float: left;
 }
-.tab_menu_content_item {
-  display: none;
+.tab_menu_content ul li {
+  float: left;
+}
+.tab_menu_content ul li a {
+  cursor: pointer;
+	width: 100px;
+	display: block;
+	text-align: center;
+	font-size: 12px;
+	line-height: 35px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
