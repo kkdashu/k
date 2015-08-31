@@ -4,12 +4,13 @@ var webpack = require('webpack');
 module.exports = {
   cache: true,
   entry: {
-    index: './app/scripts/index.js'
+    index: './app/scripts/index.js',
+    k: './app/scripts/k.js'
   },
   output:{
-    path: path.join(__dirname, 'build'),
-    publicPath: 'build/',
-    filename: "index.js"
+    path: path.join(__dirname, 'dist'),
+    publicPath: 'dist/',
+    filename: "[name].js"
   },
   module: {
     loaders: [
