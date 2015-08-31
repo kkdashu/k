@@ -7,9 +7,9 @@ module.exports = {
     index: './app/scripts/index.js'
   },
   output:{
-    path: path.join(__dirname, 'dist'),
-    publicPath: 'dist/',
-    filename: "[name].js"
+    path: path.join(__dirname, 'app/lib'),
+    publicPath: 'app/',
+    filename: "bundle.js"
   },
   module: {
     loaders: [
