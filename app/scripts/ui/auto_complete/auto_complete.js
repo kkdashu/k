@@ -14,12 +14,13 @@ var autoComplete = {
         var responseData = [];
         for (var i = 0, length = filterData.length; i < length; i++) {
             responseData.push({
-                label: '<div>' + filterData[i].name + '></div>',
+                label: filterData[i].name,
                 value: filterData[i].name
             });
         }
         response(responseData);
       },
+      search: opt.search,
       open: opt.open,
       select: opt.select
     })

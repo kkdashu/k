@@ -63,6 +63,9 @@ function cityTabView(target) {
     },
     open: function() {
       tabMenu.hide();
+    },
+    search: function() {
+      tabMenu.hide();
     }
   });
   $('body').on('click', function(e) {
