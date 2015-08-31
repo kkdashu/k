@@ -9,27 +9,11 @@ var gulp = require('gulp'),
     webpack = require('webpack'),
     mocha = require('gulp-mocha');
 
-var webpackDevConfig = require('./webpack.config.js'),
-    webpackUmdConfig = require('./webpack.config.umd.js');
+var webpackConfig = require('./webpack.config.js'),
+    compiler = Object.create(webpackConfig);
 
-var devConfig = Object.create(webpackDevConfig),
-    devCompiler = webpack(devConfig);
-
-var umdConfig = Object.create(webpackUmdConfig),
-    umdCompiler = webpack(umdConfig);
-
-gulp.task('webpack', function(callback){
-  devCompiler.run(function(err, stats) {
-		if(err) throw new gutil.PluginError("webpack", err);
-		gutil.log("[webpack]", stats.toString({
-			colors: true
-		}));
-		callback();
-	});
-});
-
-gulp.task('build', function(callback) {
-  umdCompiler.run(function(err, stats) {
+gulp.task('webpack', function(callback) {
+  compiler.run(function(err, stats) {
 		if(err) throw new gutil.PluginError("webpack", err);
 		gutil.log("[webpack]", stats.toString({
 			colors: true

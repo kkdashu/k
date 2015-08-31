@@ -1,6 +1,6 @@
 var should = require('should');
-var Event = require('../app/scripts/lib/events.js');
-var Class = require('../app/scripts/lib/class.js');
+var Event = require('../src/events.js');
+var Class = require('../src/class.js');
 
 describe('Events', function() {
   it('on and trigger', function() {
@@ -26,7 +26,7 @@ describe('Events', function() {
     result.should.equal(2);
   });
   it('event with class', function() {
-    var Events = require('../app/scripts/lib/events.js');
+    var Events = require('../src/events.js');
     var events = Events();
     var Person = Class.extend(events, {
       work: function() {
