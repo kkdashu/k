@@ -9,10 +9,14 @@ var gulp = require('gulp'),
     webpack = require('webpack'),
     mocha = require('gulp-mocha');
 
-var webpackConfig = require('./webpack.config.js');
+var webpackDevConfig = require('./webpack.config.js'),
+    webpackUmdConfig = require('./webpack.config.umd.js');
 
-var myWebpackConfig = Object.create(webpackConfig);
-var devCompiler = webpack(myWebpackConfig);
+var devConfig = Object.create(webpackDevConfig),
+    devCompiler = webpack(devConfig);
+
+var umdConfig = Object.create(webpackUmdConfig),
+    umdCompiler = webpack(umdConfig);
 
 gulp.task('webpack', function(callback){
   devCompiler.run(function(err, stats) {
@@ -23,6 +27,16 @@ gulp.task('webpack', function(callback){
 		callback();
 	});
 });
+
+gulp.task('build', function(callback) {
+  umdCompiler.run(function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack", err);
+		gutil.log("[webpack]", stats.toString({
+			colors: true
+		}));
+		callback();
+	});
+})
 
 gulp.task('connect', function() {
   connect.server({

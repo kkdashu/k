@@ -1,15 +1,18 @@
+
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
   cache: true,
   entry: {
-    index: './app/scripts/index.js'
+    k: './app/scripts/k.js'
   },
   output:{
     path: path.join(__dirname, 'dist'),
     publicPath: 'dist/',
-    filename: "[name].js"
+    filename: "k.js",
+    libraryTarget: 'umd',
+    library: 'K'
   },
   module: {
     loaders: [
