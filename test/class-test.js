@@ -1,5 +1,5 @@
 var should = require('should');
-var Class = require('../app/scripts/lib/class2.js');
+var Class = require('../app/scripts/lib/class.js');
 
 describe("Class", function(){
   it("Class.extend", function() {

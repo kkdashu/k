@@ -1,6 +1,6 @@
 var should = require('should');
 var Event = require('../app/scripts/lib/events.js');
-var Class = require('../app/scripts/lib/class2.js');
+var Class = require('../app/scripts/lib/class.js');
 
 describe('Events', function() {
   it('on and trigger', function() {
