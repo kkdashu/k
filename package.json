@@ -8,6 +8,15 @@
   },
   "author": "kkdashu",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kkdashu/kyo.git"
+  },
+  "keywords": [
+    "kyo",
+    "kyo.js",
+    "webpack"
+  ],
   "devDependencies": {
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.9.3",
