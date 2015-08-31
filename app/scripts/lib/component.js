@@ -9,8 +9,13 @@ var Component = Base.extend({
   initialize: function() {
     this.cid = _.uniqueId('component');
     this.delegateEvents();
+    this.isRender = false;
   },
   render: function(parentEl) {
+    if(this.isRender) {
+      this.show();
+      return this;
+    }
     if(!parentEl) {
       if(this.target) {
         parentEl = this.target.parentNode;
@@ -83,6 +88,7 @@ var Component = Base.extend({
     var html = this.tmp({model: this.model});
     this.$el.html(html);
     this.$el.find('.tab_menu_head_item:first').trigger('click');
+    this.isRender = true;
   },
   hide: function() {
     this.$el.hide();

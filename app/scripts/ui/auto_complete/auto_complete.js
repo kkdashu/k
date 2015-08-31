@@ -1,3 +1,5 @@
+require('./auto_complete.css');
+
 var autoComplete = {
   create: function(opt) {
     $(opt.target).autocomplete({
