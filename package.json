@@ -1,8 +1,8 @@
 {
-  "name": "webpack-demo",
+  "name": "kyo",
   "version": "1.0.0",
-  "description": "webpack demo",
-  "main": "dist/k.js",
+  "description": "kyo.js",
+  "main": "dist/kyo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

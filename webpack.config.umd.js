@@ -5,12 +5,12 @@ var webpack = require('webpack');
 module.exports = {
   cache: true,
   entry: {
-    k: './app/scripts/k.js'
+    kyo: './app/scripts/kyo.js'
   },
   output:{
     path: path.join(__dirname, 'dist'),
     publicPath: 'dist/',
-    filename: "k.js",
+    filename: "kyo.js",
     libraryTarget: 'umd',
     library: 'K'
   },
