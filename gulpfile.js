@@ -9,8 +9,8 @@ var gulp = require('gulp'),
     webpack = require('webpack'),
     mocha = require('gulp-mocha');
 
-var webpackConfig = require('./webpack.config.js'),
-    compiler = Object.create(webpackConfig);
+var webpackConfig = Object.create(require('./webpack.config.js')),
+    compiler = webpack(webpackConfig);
 
 gulp.task('webpack', function(callback) {
   compiler.run(function(err, stats) {
