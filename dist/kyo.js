@@ -97,12 +97,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  //返回的构造函数
 	  function SubClass() {
-	    if(this.constructor === SubClass && this.initialize){
-	      this.initialize.apply(this);
-	    }
 	    var properties = _.toArray(arguments);
 	    while(property = properties.shift()) {
 	      _.extend(this, property);
+	    }
+	    if(this.constructor === SubClass && this.initialize){
+	      this.initialize.apply(this);
 	    }
 	  }
 	  //继承当前类
