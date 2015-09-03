@@ -1,6 +1,6 @@
 {
   "name": "kyo",
-  "version": "1.2.0",
+  "version": "0.1.0",
   "description": "kyo.js",
   "main": "dist/kyo.js",
   "scripts": {
