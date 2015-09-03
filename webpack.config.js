@@ -12,7 +12,7 @@ module.exports = {
     publicPath: 'dist/',
     filename: "kyo.js",
     libraryTarget: 'umd',
-    library: 'K'
+    library: 'kyo'
   },
   module: {
     loaders: [
