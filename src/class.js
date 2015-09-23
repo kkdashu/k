@@ -6,7 +6,7 @@
  *   }
  * });
  *
- * var kkdashu = new Person('kkdashu');
+ * var kkdashu = new Person.create({name: 'kkdashu'});
  *
  *
  **/
@@ -55,7 +55,12 @@ Class.create = function() {
       }
     }
   }
+  if(this == Class){
+    return new _Class(arg);
+  }
   return new this(arg);
 }
+
+var _Class = Class.extend({});
 
 module.exports = Class;
