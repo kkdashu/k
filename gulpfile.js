@@ -35,18 +35,17 @@ gulp.task('watch', function() {
 });
 
 gulp.task('watch_test', function() {
-  gulp.watch(['./app/scripts/lib/*.js', './test/*.js'], ['mocha_test']);
+  gulp.watch(['./src/*.js', './test/*.js'], ['mocha_test']);
 });
 
 gulp.task('mocha_test', function() {
-  try{
     gulp.src('./test/*.js')
-      .pipe(mocha());
-  } catch(err) {
-    gutil.log('[test]', err);
-  }
+        .pipe(mocha())
+        .once('error', function(e) {
+          console.log(e);
+        });
 });
 
 gulp.task('default', ['connect', 'watch']);
 
-gulp.task('test', ['watch_test']);
+gulp.task('test', ['mocha_test', 'watch_test']);
