@@ -75,13 +75,43 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * 模拟javascript的oo实现
+	 * base
+	 * var instance = Class.create({
+	 * 	name: 'kkdashu',
+	 * 	age: 28
+	 * });
+	 * console.assert(instance.name, 'kkdashu');
+	 * console.assert(instance.age,  28);
+	 *
+	 *
 	 * var Person = Class.extend({
 	 *   say: function() {
 	 *    console.log('My name is ' + this.name);
 	 *   }
 	 * });
 	 *
-	 * var kkdashu = new Person('kkdashu');
+	 * var kkdashu = Person.create({
+	 * 		name: 'kkdashu'
+	 * 		show: function() {
+	 * 	 		console.log(this.name);
+	 * 	  }
+	 * 	});
+	 *
+	 * //通过extend实现继承效果
+	 * //extend会把属性或者方法附加到构造函数的原型上
+	 * //create会把属性附加到实例对象上（会覆盖掉原型上的属性）
+	 * var Student = Person.extend({
+	 * 	grade: '2'
+	 * });
+	 * var s = Student.create({
+	 * 	name: 'wmeng',
+	 * 	age: 28,
+	 * 	grade: 11
+	 * });
+	 *
+	 * console.assert(s.name, 'wmeng');
+	 * console.assert(s.age, 28);
+	 * console.assert(s.grade, 11);
 	 *
 	 *
 	 **/
@@ -97,7 +127,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  //返回的构造函数
 	  function SubClass() {
+	    //获取调用create方法时传递过来的参数
 	    var properties = _.toArray(arguments);
+	    var property;
 	    while(property = properties.shift()) {
 	      _.extend(this, property);
 	    }
@@ -106,19 +138,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	  //继承当前类
-	  SubClass.prototype = new this();
+	  SubClass.prototype = new Constructor();
 
-	  //把所有传过来的属性与方法赋值给原型
+	  //调用extend时把所有传过来的属性与方法赋值给原型
 	  var properties = _.toArray(arguments);
-	  while(property = properties.shift()) {
-	    _.extend(SubClass.prototype, property);
-	  }
+	  mixin(SubClass.prototype, properties);
 	  //修正constructor属性
 	  SubClass.prototype.constructor = SubClass;
 	  SubClass.extend = Class.extend;
 	  SubClass.create = Class.create;
 	  return SubClass;
-	}
+	};
 
 	Class.create = function() {
 	  var arg = {}, par, p;
@@ -126,11 +156,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	    par = arguments[i];
 	    for(p in par) {
 	      if(par.hasOwnProperty(p)) {
-	        arg[p] = par[p]
+	        arg[p] = par[p];
 	      }
 	    }
 	  }
+	  // this可能是Ｃlass或者SubClass
+	  if(this == Class){
+	    return new _Class(arg);
+	  }
 	  return new this(arg);
+	}
+
+	var _Class = Class.extend({});
+
+	function mixin(prototype, mixins) {
+	  var unionProperty = union(mixins);
+	  _.extend(prototype, unionProperty);
+	}
+
+	function union(properties) {
+	  if(!properties.length || properties.length === 0) {
+	    return {};
+	  }
+	  if(properties.length == 1) {
+	    return properties[0];
+	  }
+	  var result = {};
+	  while(property = properties.shift()) {
+	    for(var p in property) {
+	      var v = property[p];
+	      if(result[p]) {
+	        v = _.extend(v, result[p]);
+	      }
+	      result[p] = v
+	    }
+	  }
+	  return result;
 	}
 
 	module.exports = Class;

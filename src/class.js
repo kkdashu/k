@@ -54,6 +54,7 @@ Class.extend = function() {
   function SubClass() {
     //获取调用create方法时传递过来的参数
     var properties = _.toArray(arguments);
+    var property;
     while(property = properties.shift()) {
       _.extend(this, property);
     }
@@ -66,15 +67,13 @@ Class.extend = function() {
 
   //调用extend时把所有传过来的属性与方法赋值给原型
   var properties = _.toArray(arguments);
-  while(property = properties.shift()) {
-    _.extend(SubClass.prototype, property);
-  }
+  mixin(SubClass.prototype, properties);
   //修正constructor属性
   SubClass.prototype.constructor = SubClass;
   SubClass.extend = Class.extend;
   SubClass.create = Class.create;
   return SubClass;
-}
+};
 
 Class.create = function() {
   var arg = {}, par, p;
@@ -82,7 +81,7 @@ Class.create = function() {
     par = arguments[i];
     for(p in par) {
       if(par.hasOwnProperty(p)) {
-        arg[p] = par[p]
+        arg[p] = par[p];
       }
     }
   }
@@ -94,5 +93,30 @@ Class.create = function() {
 }
 
 var _Class = Class.extend({});
+
+function mixin(prototype, mixins) {
+  var unionProperty = union(mixins);
+  _.extend(prototype, unionProperty);
+}
+
+function union(properties) {
+  if(!properties.length || properties.length === 0) {
+    return {};
+  }
+  if(properties.length == 1) {
+    return properties[0];
+  }
+  var result = {};
+  while(property = properties.shift()) {
+    for(var p in property) {
+      var v = property[p];
+      if(result[p]) {
+        v = _.extend(v, result[p]);
+      }
+      result[p] = v
+    }
+  }
+  return result;
+}
 
 module.exports = Class;

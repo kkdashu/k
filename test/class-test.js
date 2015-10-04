@@ -56,5 +56,22 @@ describe("Class", function() {
     });
     s2.name.should.equal('s2');
     s2.show().should.equal('name: s2, grade: 3');
-  })
+  });
+  it("union properties", function() {
+    var Component = Class.extend({
+      events: {
+        'click .p': 'p1'
+      }
+    }, {
+      events: {
+        'click .p2': 'p2'
+      }
+    });
+    var c = Component.create();
+    c.should.have.property('events');
+    c.events.should.have.property('click .p');
+    c.events.should.have.property('click .p2');
+    c.events['click .p'].should.equal('p1');
+    c.events['click .p2'].should.equal('p2');
+  });
 });
