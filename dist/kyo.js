@@ -139,12 +139,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  //继承当前类
 	  SubClass.prototype = new Constructor();
-
+	  //修正constructor属性
+	  SubClass.prototype.constructor = SubClass;
 	  //调用extend时把所有传过来的属性与方法赋值给原型
 	  var properties = _.toArray(arguments);
 	  mixin(SubClass.prototype, properties);
-	  //修正constructor属性
-	  SubClass.prototype.constructor = SubClass;
 	  SubClass.extend = Class.extend;
 	  SubClass.create = Class.create;
 	  return SubClass;
@@ -165,30 +164,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return new _Class(arg);
 	  }
 	  return new this(arg);
-	}
+	};
 
 	var _Class = Class.extend({});
 
 	function mixin(prototype, mixins) {
-	  var unionProperty = union(mixins);
+	  var unionProperty = union(prototype, mixins);
 	  _.extend(prototype, unionProperty);
 	}
 
-	function union(properties) {
+	function union(prototype, properties) {
 	  if(!properties.length || properties.length === 0) {
 	    return {};
 	  }
-	  if(properties.length == 1) {
-	    return properties[0];
-	  }
+	  // if(properties.length == 1) {
+	  //   return properties[0];
+	  // }
 	  var result = {};
+	  var property;
 	  while(property = properties.shift()) {
 	    for(var p in property) {
+	      if(!property.hasOwnProperty(p)) { break; }
 	      var v = property[p];
 	      if(result[p]) {
 	        v = _.extend(v, result[p]);
 	      }
-	      result[p] = v
+	      //如果是events则遍历原型链 组合所有的events
+	      if(p === 'events') {
+	        var events = prototype[p];
+	        if(events) {
+	          v = _.extend(v, events);
+	        }
+	      }
+	      result[p] = v;
 	    }
 	  }
 	  return result;

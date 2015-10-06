@@ -64,14 +64,12 @@ Class.extend = function() {
   }
   //继承当前类
   SubClass.prototype = new Constructor();
+  //修正constructor属性
   SubClass.prototype.constructor = SubClass;
   //调用extend时把所有传过来的属性与方法赋值给原型
   var properties = _.toArray(arguments);
   mixin(SubClass.prototype, properties);
-  //修正constructor属性
-  SubClass.extend = function(){
-    return Class.extend.apply(SubClass, _.toArray(arguments));
-  };
+  SubClass.extend = Class.extend;
   SubClass.create = Class.create;
   return SubClass;
 };
@@ -111,6 +109,7 @@ function union(prototype, properties) {
   var property;
   while(property = properties.shift()) {
     for(var p in property) {
+      if(!property.hasOwnProperty(p)) { break; }
       var v = property[p];
       if(result[p]) {
         v = _.extend(v, result[p]);

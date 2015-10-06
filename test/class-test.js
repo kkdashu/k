@@ -19,6 +19,10 @@ describe("Class", function() {
   });
   it("类的继承", function() {
     var Person = Class.extend({
+      initialize: function() {
+        console.log('haha');
+        this.sex = 'male';
+      },
       name: 'kkdashu',
       show: function() {
         return 'name: ' + this.name
@@ -26,6 +30,7 @@ describe("Class", function() {
     });
     var p = Person.create();
     p.name.should.equal('kkdashu');
+    p.sex.should.equal('male');
     p.show().should.equal('name: kkdashu');
 
     //create传参数会覆盖类定义时默认的值
@@ -36,6 +41,7 @@ describe("Class", function() {
       }
     });
     p2.name.should.equal('wmeng');
+    p2.sex.should.equal('male');
     p2.show(28).should.equal('name: wmeng, age: 28');
 
     var Student = Person.extend({
@@ -48,6 +54,7 @@ describe("Class", function() {
     var s = Student.create();
     s.name.should.equal('kkdashu');
     s.grade.should.equal('2');
+    s.sex.should.equal('male');
     s.show().should.equal('name: kkdashu, grade: 2');
 
     var s2 = Student.create({
@@ -55,6 +62,7 @@ describe("Class", function() {
       grade: '3'
     });
     s2.name.should.equal('s2');
+    s2.sex.should.equal('male');
     s2.show().should.equal('name: s2, grade: 3');
   });
   it("union properties", function() {
