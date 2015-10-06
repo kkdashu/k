@@ -73,5 +73,40 @@ describe("Class", function() {
     c.events.should.have.property('click .p2');
     c.events['click .p'].should.equal('p1');
     c.events['click .p2'].should.equal('p2');
+    Component.prototype.should.have.property('events');
+    var Child = Component.extend({
+      events: {
+        'click .p3': 'p3'
+      }
+    });
+    c = Child.create();
+    c.should.have.property('events');
+    c.events.should.have.property('click .p');
+    c.events.should.have.property('click .p2');
+    c.events.should.have.property('click .p3');
+    c.events['click .p'].should.equal('p1');
+    c.events['click .p2'].should.equal('p2');
+    c.events['click .p3'].should.equal('p3');
+    var GrandChild = Child.extend({
+      events: {
+        'click .p4': 'p4'
+      }
+    }, {
+      events: {
+        'click .p5': 'p5'
+      }
+    });
+    c = GrandChild.create();
+    c.should.have.property('events');
+    c.events.should.have.property('click .p');
+    c.events.should.have.property('click .p2');
+    c.events.should.have.property('click .p3');
+    c.events.should.have.property('click .p4');
+    c.events.should.have.property('click .p5');
+    c.events['click .p'].should.equal('p1');
+    c.events['click .p2'].should.equal('p2');
+    c.events['click .p3'].should.equal('p3');
+    c.events['click .p4'].should.equal('p4');
+    c.events['click .p5'].should.equal('p5');
   });
 });
