@@ -1,0 +1,23 @@
+{
+  "name": "kyo",
+  "version": "0.1.5",
+  "description": "一个简单的node服务器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkdashu/kyo.git"
+  },
+  "keywords": [
+    "node",
+    "web"
+  ],
+  "author": "kkdashu <wmeng17@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkdashu/kyo/issues"
+  },
+  "homepage": "https://github.com/kkdashu/kyo#readme"
+}
